@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('SNOWFLAKE_DATABASE', 'PRUEBA_TECNICA') }}"
+    schema: RAW
+    tables:
+      - name: categories
+      - name: cities
+      - name: topics
+      - name: groups
+      - name: venues
+      - name: members
+      - name: events
+      - name: groups_topics
+      - name: members_topics
