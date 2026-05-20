@@ -2,12 +2,6 @@
 
 /*
     mart_event_engagement — Engagement por evento
-    ─────────────────────────────────────────────────────────────────────────────
-    Preguntas que responde:
-      ✓ ¿Cuántos asistentes tuvo cada evento?
-      ✓ ¿Qué grupos tienen más engagement?
-      ✓ ¿Qué categorías generan más asistencia?
-    ─────────────────────────────────────────────────────────────────────────────
 */
 
 with fact as (

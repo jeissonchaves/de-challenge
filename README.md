@@ -31,10 +31,17 @@ cd de-challenge
 las credenciales se usan desde airflow connections y variables, para prueba desde local se cargan en el archivo `airflow_settings.yaml`.
 
 Agrega tu archivo `airflow_settings.yaml` en la raíz del proyecto (junto a este README).
+Puedes usar el archivo de plantilla proporcionado como punto de partida:
+```bash
+cp airflow_settings.example.yaml airflow_settings.yaml
+```
+
 Debe incluir:
 - La conexión a Snowflake con el ID `snowflake_default` (usada tanto por las funciones en Python como por dbt-cosmos).
 - La conexión de Slack (opcional para alertas).
 - La Variable `job_config`, que define las capas de ingesta (Tiers).
+
+*(Nota: `airflow_settings.yaml` es ignorado por git por seguridad. Si no lo tienes, deberás rellenar la plantilla con tus credenciales).*
 
 ### 4. Levantar el ambiente local
 Con el Astro CLI instalado, descarga las imágenes de Docker, instala las librerías necesarias (`dbt-snowflake`, `astronomer-cosmos`, etc. desde `requirements.txt`) e inicia Airflow ejecutando:

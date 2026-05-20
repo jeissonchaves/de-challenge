@@ -15,10 +15,9 @@ def send_slack_success_alert(context):
     """
     
     slack_hook = SlackWebhookHook(
-        slack_webhook_conn_id='slack_webhook',
-        message=slack_msg
+        slack_webhook_conn_id='slack_webhook'
     )
-    slack_hook.execute()
+    slack_hook.send(text=slack_msg)
 
 def send_slack_failure_alert(context):
     """
@@ -37,7 +36,6 @@ def send_slack_failure_alert(context):
     """
     
     slack_hook = SlackWebhookHook(
-        slack_webhook_conn_id='slack_webhook',
-        message=slack_msg
+        slack_webhook_conn_id='slack_webhook'
     )
-    slack_hook.execute()
+    slack_hook.send(text=slack_msg)

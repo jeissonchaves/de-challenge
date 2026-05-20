@@ -40,7 +40,6 @@ select
         CASE
             WHEN "organizer.name" = 'not_found' THEN TRUE
             ELSE FALSE
-        END AS is_orphan_group
-    FROM source,
+        END AS is_orphan_group,
     CURRENT_TIMESTAMP() as LOADED_DATE
 from {{ source('raw', 'groups') }}

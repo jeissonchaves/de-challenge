@@ -54,7 +54,7 @@ def export_table_to_gcs(
     COPY INTO '{export_path}'
     FROM (
         SELECT *
-        FROM {job_config['schema']}.{table_name}
+        FROM {table_name}
     )
     FILE_FORMAT = (
         TYPE = CSV

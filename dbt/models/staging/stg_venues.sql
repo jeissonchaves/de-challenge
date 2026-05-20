@@ -2,10 +2,10 @@
 select
     "venue_id" as VENUE_ID,
     trim("venue_name") as VENUE_NAME,
-    LOWER(TRIM(city)) AS CITY_NAME,
+    LOWER(TRIM("city")) AS CITY_NAME,
     trim("state") as STATE,
     trim("address_1") as ADDRESS_1,
-    UPPER(TRIM(country)) AS COUNTRY,
+    UPPER(TRIM("country")) AS COUNTRY,
     trim("localized_country_name") as LOCALIZED_COUNTRY_NAME,
     "zip" as ZIP_CODE,
     "distance" as DISTANCE,

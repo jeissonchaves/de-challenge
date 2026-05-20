@@ -10,10 +10,7 @@
     los atributos más recientes (MAX JOINED_AT) y se agregan métricas de actividad.
 
     Supuestos:
-      - CITY / COUNTRY se toman del primer registro disponible (arbitrario pero
-        consistente al no existir una tabla de perfil canónica).
-      - TENURE_DAYS se calcula contra CURRENT_DATE() → varía con el tiempo.
-      - TENURE_BUCKET clasifica antigüedad en 4 cuartiles operativos.
+      - CITY / COUNTRY se toman del primer registro disponible.
     ─────────────────────────────────────────────────────────────────────────────
 */
 

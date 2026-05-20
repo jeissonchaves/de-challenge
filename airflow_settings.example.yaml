@@ -1,0 +1,52 @@
+# Plantilla de configuración local para Airflow (Astro CLI).
+# INSTRUCCIONES: 
+# 1. Copia este archivo y renómbralo a 'airflow_settings.yaml'
+# 2. Reemplaza los valores entre < > con tus credenciales reales.
+# IMPORTANTE: 'airflow_settings.yaml' está ignorado en .gitignore por seguridad.
+
+airflow:
+  connections:
+    # Conexión requerida para la ingesta, dbt-cosmos y exportación
+    - conn_id: snowflake_default
+      conn_type: snowflake
+      conn_login: <TU_USUARIO_SNOWFLAKE>
+      conn_password: <TU_PASSWORD_SNOWFLAKE>
+      conn_extra:
+        account: <TU_CUENTA_SNOWFLAKE_ID> # ej. xy12345.us-east-1
+        warehouse: <TU_WAREHOUSE>         # ej. COMPUTE_WH
+        database: <TU_BASE_DE_DATOS>      # ej. PRUEBA_TECNICA
+        role: <TU_ROL_SNOWFLAKE>          # ej. ACCOUNTADMIN o DATA_ENGINEER_ROLE
+
+    # Conexión opcional para alertas de Slack
+    - conn_id: slack_webhook
+      conn_type: http
+      host: https://hooks.slack.com/services/
+      password: <TU_SLACK_WEBHOOK_URL_SECRETA>
+
+  pools:
+    - pool_name:
+      pool_slot:
+      pool_description:
+
+  variables:
+    # Configuración principal del pipeline (qué tablas leer desde GCS y en qué orden)
+    - variable_name: job_config
+      variable_value: >-
+        {"conn_id": "snowflake_default", 
+        "database": "<TU_BASE_DE_DATOS>", 
+        "schema": "RAW", 
+        "role": "<TU_ROL_SNOWFLAKE>", 
+        "stage_name": "RAW.gcs_stage", 
+        "file_format_name": "RAW.csv_format", 
+        "gcs_bucket": "<TU_BUCKET_GCS>", 
+        "gcs_folder": "meetup", 
+        "table_tiers": 
+          {"tier_1": ["categories", "cities", "topics"], 
+          "tier_2": ["groups", "venues"], 
+          "tier_3": ["events", "groups_topics", "members"], 
+          "tier_4": ["members_topics"]}}
+
+    # Configuración para la exportación (Reverse ETL)
+    - variable_name: reverse_tables
+      variable_value: >-
+        ["STAGING_ANALYTICS.FACT_ATTENDANCE","STAGING_ANALYTICS.MART_EVENT_ENGAGEMENT"]
