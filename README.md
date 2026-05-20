@@ -6,9 +6,10 @@ Este proyecto implementa un pipeline de datos de extremo a extremo utilizando **
 - **`csv_to_snowflake_ingestion`**: Realiza la ingesta en capas (Tiers) desde archivos en Google Cloud Storage hacia Snowflake (esquema `RAW`).
 - **`dbt_transformations`**: Ejecuta todos los modelos de dbt usando `astronomer-cosmos`. Construye el DAG de dbt automáticamente infiriendo el orden: primero la capa de Staging, luego Dimensiones, Facts y finalmente Marts analíticos.
 - **`snowflake_to_gcs`**: Exporta los resultados transformados desde Snowflake hacia GCS.
+- **`notifications`**: Se envia una notificacion a slack cuando un DAG termina ya sea exitoso o fallido con el link al log del error. 
 
 Las dependencias entre DAGs son manejadas nativamente por **Assets de Airflow**. Cuando un DAG termina, actualiza su Asset y dispara automáticamente el siguiente en la cadena.
-Se envia una notificacion a slack cuando un DAG termina ya sea exitoso o fallido con el link al log del error. 
+
 
 ---
 
