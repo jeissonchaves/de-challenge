@@ -11,11 +11,11 @@
 
 **Decisión:** Una fila por evento (no por miembro × evento).
 
-**Contexto:**  
-El modelo solicitado inicialmente incluía `member_id`, `attended`, `guests` y
+**Contexto:** El modelo solicitado inicialmente incluía `member_id`, `attended`, `guests` y
 `response_time` en la fact table, lo que implica una tabla de RSVPs individuales
-(un registro por miembro que responde a un evento). Esta tabla **no existe en el
-dataset raw disponible**.
+(un registro por miembro que responde a un evento). Esta tabla no existe en el
+dataset raw disponible.
+
 ---
 
 ## 2. Dimensión `dim_date` generada sintéticamente
@@ -51,9 +51,6 @@ coalesce(f.VENUE_CITY, g.CITY) as CITY
 - El volumen de datos (Meetup histórico) cabe en tablas estáticas sin necesidad
   de estrategia incremental.
 - Las dimensiones son relativamente pequeñas y estables.
-
-**Excepción futura:** Si el dataset crece significativamente, `fact_attendance`
-puede migrarse a `incremental` con `unique_key = 'EVENT_ID'` sin cambiar los marts.
 
 ---
 
