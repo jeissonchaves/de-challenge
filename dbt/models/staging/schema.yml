@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: stg_categories
+    columns:
+      - name: category_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_cities
+    columns:
+      - name: city_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_topics
+    columns:
+      - name: topic_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_groups
+    columns:
+      - name: group_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_venues
+    columns:
+      - name: venue_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_members
+    columns:
+      - name: member_id
+        tests:
+          - not_null
+
+  - name: stg_events
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_groups_topics
+    columns:
+      - name: group_id
+        tests:
+          - not_null
+      - name: topic_id
+        tests:
+          - not_null
+
+  - name: stg_members_topics
+    columns:
+      - name: member_id
+        tests:
+          - not_null
+      - name: topic_id
+        tests:
+          - not_null
