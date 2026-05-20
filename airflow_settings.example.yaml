@@ -9,19 +9,19 @@ airflow:
     # Conexión requerida para la ingesta, dbt-cosmos y exportación
     - conn_id: snowflake_default
       conn_type: snowflake
-      conn_login: <TU_USUARIO_SNOWFLAKE>
-      conn_password: <TU_PASSWORD_SNOWFLAKE>
+      conn_login: <USUARIO_SNOWFLAKE>
+      conn_password: <PASSWORD_SNOWFLAKE>
       conn_extra:
-        account: <TU_CUENTA_SNOWFLAKE_ID> # ej. xy12345.us-east-1
-        warehouse: <TU_WAREHOUSE>         # ej. COMPUTE_WH
-        database: <TU_BASE_DE_DATOS>      # ej. PRUEBA_TECNICA
-        role: <TU_ROL_SNOWFLAKE>          # ej. ACCOUNTADMIN o DATA_ENGINEER_ROLE
+        account: <CUENTA_SNOWFLAKE_ID> # ej. xy12345.us-east-1
+        warehouse: <WAREHOUSE>         # ej. COMPUTE_WH
+        database: <BASE_DE_DATOS>      # ej. PRUEBA_TECNICA
+        role: <ROL_SNOWFLAKE>          # ej. ACCOUNTADMIN o DATA_ENGINEER_ROLE
 
     # Conexión opcional para alertas de Slack
     - conn_id: slack_webhook
       conn_type: http
       host: https://hooks.slack.com/services/
-      password: <TU_SLACK_WEBHOOK_URL_SECRETA>
+      password: <SLACK_WEBHOOK_URL_SECRETA>
 
   pools:
     - pool_name:
@@ -33,12 +33,12 @@ airflow:
     - variable_name: job_config
       variable_value: >-
         {"conn_id": "snowflake_default", 
-        "database": "<TU_BASE_DE_DATOS>", 
+        "database": "<BASE_DE_DATOS>", 
         "schema": "RAW", 
-        "role": "<TU_ROL_SNOWFLAKE>", 
+        "role": "<ROL_SNOWFLAKE>", 
         "stage_name": "RAW.gcs_stage", 
         "file_format_name": "RAW.csv_format", 
-        "gcs_bucket": "<TU_BUCKET_GCS>", 
+        "gcs_bucket": "<BUCKET_GCS>", 
         "gcs_folder": "meetup", 
         "table_tiers": 
           {"tier_1": ["categories", "cities", "topics"], 
